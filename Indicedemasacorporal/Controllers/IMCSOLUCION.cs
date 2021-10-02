@@ -22,16 +22,19 @@ namespace Indicedemasacorporal.Controllers
     public class IMCSOLUCION : ControllerBase
     {
         [HttpGet]
-        public IActionResult IMCFinal(double altura, double peso)
+        public IActionResult IMCFinal(double peso, double altura)
         {
+            //Variables//
+
             var R = new Persona();
             R.Peso = peso;
             R.Altura = altura / 100;
             var AFinal = R.Altura;
+
+            //Formula//
+
             var IMC = peso / (AFinal * AFinal);
             var Clasificacion = "";
-
-
 
             if (IMC < 18.5)
             {
@@ -55,7 +58,7 @@ namespace Indicedemasacorporal.Controllers
                     }
                 }
             }
-            var Resultado = "Su IMC es: " + Convert.ToString(IMC) + "y su composicion corporal es: " + Clasificacion;
+            var Resultado = "Tu IMC es de: " + Convert.ToString(IMC)  + Clasificacion;
             return Ok(Resultado);
         }
     }
